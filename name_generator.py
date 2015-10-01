@@ -6,6 +6,9 @@ class NameGenerator:
 
     def __init__(self, adj_file='adjectives.txt', noun_file='pokemon151.txt',
                  sep='', seed=None):
+        """Create a name generator which uses an adjective found in
+        the text file adj_file and a noun found in noun_file, separated
+        by the string sep."""
         self.adj_list = self.parse_list(adj_file)
         self.noun_list = self.parse_list(noun_file)
         self.sep = sep
@@ -18,12 +21,15 @@ class NameGenerator:
         return res
 
     def generate_names(self, n):
+        """Generate n names and return a list.""""
         res = []
         for _ in xrange(n):
             res.append(self.generate_name())
         return res
 
     def generate_name(self):
+        """Generate a name taking one random adjective and one
+        random pokemon."""
         adj = random.choice(self.adj_list)
         noun = random.choice(self.noun_list)
         return adj.title() + self.sep + noun.title()
@@ -49,4 +55,3 @@ if __name__ == '__main__':
     names = gen.generate_names(int(args.n))
     for name in list(names):
         print name
-
